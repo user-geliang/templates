@@ -1,0 +1,48 @@
+1.java安装
+tar -xf jdk-11.0.2_linux-x64_bin.tar.gz
+vim ~/.bash_profile
+
+export JAVA_HOME=/root/soft/jdk-11.0.2
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH=.:${JAVA_HOME}/jre/lib/rt.jar:${JAVA_HOME}/lib/dt.jar:${JAVA_HOME}/lib/tools.jar
+
+source ~/.bash_profile
+java -version
+
+2.tomcat安装（安装apache-tomcat-9.0.73.tar.gz）
+tar -xf apache-tomcat-9.0.73.tar.gz
+cp jenkins.war apache-tomcat-9.0.73/webapps/
+cd apache-tomcat-9.0.73/bin/
+./startup.sh
+
+apache-tomcat-9.0.73/conf/server.xml
+默认端口是8080，可修改。
+
+显示jenkins报错信息到tomcat日志。
+apache-tomcat-9.0.73/webapps/jenkins/WEB-INF/classes
+添加logging.properties
+org.apache.catalina.core.ContainerBase.[Catalina].level=INFO
+org.apache.catalina.core.ContainerBase.[Catalina].handlers=java.util.logging.ConsoleHandler
+
+启动jenkins
+http://58.246.48.218:25678/jenkins
+
+3.配置jenkins
+略
+
+4.离线安装插件
+插件下载地址，下载.hpi文件
+https://plugins.jenkins.io/
+
+1、上传插件安装
+Manage Jenkins -> Plugin Manager
+依赖报错的话，在 https://updates.jenkins.io/download/plugins/ 源中选择合适的 hpi 文件，先安装依赖插件
+因为可能要安装依赖插件，所以要把相应的依赖也下载安装
+
+比较麻烦，所以可以先在可以连外网的机器安装相同版本的jenkins和安装好相应的插件，再把jenkins主目录下的plugins文件夹，传到内网的jenkins的plugins文件夹下即可
+
+Jenkins操作：
+重启 http://localhost:8080/restart
+退出 http://localhost:8080/exit
+重新加载配置信息 http://localhost:8080/reload
+
