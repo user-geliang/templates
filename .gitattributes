@@ -1,3 +1,0 @@
-ideaIC-2022.3.2.exe filter=lfs diff=lfs merge=lfs -text
-jdk-11.0.2_linux-x64_bin.tar.gz filter=lfs diff=lfs merge=lfs -text
-jenkins.war filter=lfs diff=lfs merge=lfs -text
